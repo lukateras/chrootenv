@@ -103,7 +103,9 @@ int main(gint argc, gchar **argv) {
     if (unshare(CLONE_NEWNS | CLONE_NEWUSER) < 0) {
       int unshare_errno = errno;
 
+      // TODO: remove this message once RHEL drops support for pre 3.19 kernels
       g_message("Requires Linux version >= 3.19 built with CONFIG_USER_NS");
+
       if (g_file_test("/proc/sys/kernel/unprivileged_userns_clone",
                       G_FILE_TEST_EXISTS))
         g_message("Run: sudo sysctl -w kernel.unprivileged_userns_clone=1");
