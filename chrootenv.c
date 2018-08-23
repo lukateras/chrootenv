@@ -81,10 +81,10 @@ int main(gint argc, gchar **argv) {
     return 1;
   }
 
-  if (g_getenv("NIX_CHROOTENV"))
+  if (g_getenv("__CHROOTENV"))
     g_warning("chrootenv doesn't stack!");
   else
-    g_setenv("NIX_CHROOTENV", "", TRUE);
+    g_setenv("__CHROOTENV", "", TRUE);
 
   g_autofree gchar *prefix =
       g_build_filename(g_get_tmp_dir(), "chrootenvXXXXXX", NULL);
